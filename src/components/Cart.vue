@@ -30,7 +30,8 @@
 						<td>{{ total }}</td>
 					</tr>
 				</tbody>	
-			</tableta			<button @click="onOrder"
+			</table>
+			<button @click="onOrder"
 					class="btn btn-success"
 			>
 				Order Now

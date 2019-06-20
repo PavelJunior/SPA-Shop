@@ -2,13 +2,14 @@
 	<div>
 		<h1>Products</h1>
 		<div class="row">
-			<div class="col col-sm-4" v-for="product in getProducts">
+			<div class="col col-sm-3 product" v-for="product in getProducts">
 				<router-link :to="'products/' + product.id_product"
 							 tag="h3"
 				>
 					<a>{{ product.title }}</a>
 				</router-link>
 				<h4>{{ product.price }}</h4>
+				<img :src="itemImg(product.image)" alt="">
 				<button class="btn btn-primary"
 						v-if="inCart.findIndex(obj => obj.id === product.id_product) == -1"
 						@click="addToCart(product.id_product)"
@@ -72,6 +73,9 @@
 				if(cnt < 1 || isNaN(cnt) || cnt === ''){
 					$event.target.value = 1
 				}
+			},
+			itemImg(image){
+				return "src/images/" + image;
 			}
 		}
 	}
@@ -89,5 +93,16 @@
 
 	.btn-danger{
 		padding: 2px 8px;
+	}
+
+	img{
+		height: 200px;
+		width: 200px;
+		margin-left: -50px;
+		overflow: hidden;
+		margin-bottom: 7px;
+	}
+
+	.product{
 	}
 </style>

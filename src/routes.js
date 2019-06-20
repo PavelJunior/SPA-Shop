@@ -20,10 +20,10 @@ const routes = [
         name: 'products',
         path: '/products',
         component: ProductsList,
-        beforeEnter(from, to, next){
-            store.dispatch('products/loadProducts');
-            next();
-        }
+        // beforeEnter(from, to, next){
+        //     store.dispatch('products/loadProducts');
+        //     next();
+        // }
     },
     {
         path: '/products/:id',
