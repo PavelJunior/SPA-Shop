@@ -4,19 +4,26 @@
 		<router-link :to="{name: 'products'}">Back to Main</router-link>
 		<hr>
 		<h3>{{ product.price }}</h3>
+		<hr>
+		<p>{{ product.description }}</p>
 		<button class="btn btn-primary"
-				v-if="inCart.indexOf(product.id_product) === -1"
+				v-if="inCart.findIndex(obj => obj.id === product.id_product) == -1"
 				@click="addToCart(product.id_product)"
 		>
 			Add to cart
 		</button>
-		<button class="btn btn-warning"
-				v-else
-				@click="removeFromCart(product.id_product)"
-		>
-			Remove from cart
-		</button>
-		hw: add to cart
+		<div v-else>
+			<button @click="cntMinus(product.id_product) ">-</button>
+			<input class="cntInput" type="text" :value="getCnt(product.id_product)"
+				   @input="onlyNumber($event); calculateCnt($event.target.value, product.id_product)"
+			>
+			<button @click="cntPlus(product.id_product) ">+</button>
+			<button class="btn btn-danger"
+					@click="removeFromCart(product.id_product)"
+			>
+				X
+			</button>
+		</div>
 	</div>
 </template>
 
@@ -42,8 +49,42 @@
 		methods: {
 			...mapActions('cart', {
 				addToCart: 'add',
-				removeFromCart: 'remove'
-			})
+				removeFromCart: 'remove',
+				cntPlus: 'cntPlus',
+				cntMinus: 'cntMinus',
+				cntInput: 'cntInput'
+			}),
+			getCnt(id_product){
+				return this.inCart[this.inCart.findIndex(obj => obj.id === id_product)].cnt
+			},
+			calculateCnt(cnt, id_product){
+				return this.cntInput({id_product: id_product, cnt: cnt});
+			},
+			onlyNumber ($event) {
+				let pattern = /^[0-9]{1,3}$/;
+				let cnt = $event.target.value;
+				if(!pattern.test(cnt)){
+					let numbers = cnt.replace(/[^\d]/g, '');
+					if(parseInt(numbers) > 999){
+						numbers = parseInt(numbers/10);
+					}
+					$event.target.value = numbers
+				}
+				if(cnt < 1 || isNaN(cnt) || cnt === ''){
+					$event.target.value = 1
+				}
+			}
 		}
 	}
 </script>
+
+<style scoped>
+	.cntInput{
+		width: 40px;
+		text-align: center;
+	}
+
+	.btn-danger{
+		padding: 2px 8px;
+	}
+</style>

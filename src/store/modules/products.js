@@ -3,7 +3,26 @@ import Vue from 'vue';
 export default {
     namespaced: true,
     state: {
-        products: []
+        products: [
+            {
+                id_product: 1,
+                title: "IPhone 5",
+                price: 20400,
+                description: 'it is iphone 5'
+            },
+            {
+                id_product: 2,
+                title: "IPhone 6",
+                price: 25000,
+                description: 'it is iphone 6'
+            },
+            {
+                id_product: 3,
+                title: "IPhone 7",
+                price: 30000,
+                description: 'it is iphone 7'
+            }
+        ]
     },
     getters: {
         products(state){
@@ -29,12 +48,12 @@ export default {
         }
     },
     actions: {
-        loadProducts(store) {
-            Vue.http.get('products.php')
-                .then(response => response.json())
-                .then(data => {
-                    store.commit('loadProducts', data);
-                })
-        }
+        // loadProducts(store) {
+        //     Vue.http.get('products.php')
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             store.commit('loadProducts', data);
+        //         })
+        // }
     }
 }
