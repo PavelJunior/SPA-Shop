@@ -1,3 +1,5 @@
+const MAX_OF_ONE_PRODUCT = 15;
+
 export default {
     namespaced: true,
     state: {
@@ -31,9 +33,12 @@ export default {
                 state.products.splice(pos, 1);
             }
         },
-        cntPlus(state, id_product){
+        cntPlus(state, id_product) {
             let pos = state.products.findIndex(obj => obj.id === id_product);
-            state.products[pos].cnt+=1;
+            if (state.products[pos].cnt < MAX_OF_ONE_PRODUCT) {
+                state.products[pos].cnt += 1;
+
+            }
         },
         cntMinus(state, id_product){
             let pos = state.products.findIndex(obj => obj.id === id_product);
@@ -45,6 +50,8 @@ export default {
             let input = parseInt(params.cnt);
             if(input < 1) {
                 input = 1;
+            } else if (input > MAX_OF_ONE_PRODUCT){
+                input = MAX_OF_ONE_PRODUCT;
             }
             let pos = state.products.findIndex(obj => obj.id === params.id_product);
             state.products[pos].cnt = input;

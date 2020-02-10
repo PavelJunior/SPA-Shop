@@ -19,15 +19,15 @@
 				<tbody>
 					<tr v-for="product in products">
 						<td>{{ product.title }}</td>
-						<td>{{ product.price }}</td>
+						<td>{{ product.price + '$' }}</td>
 						<td>{{ getCnt(product.id_product) }}</td>
-						<td>{{ product.price * getCnt(product.id_product) }}</td>
+						<td>{{ product.price * getCnt(product.id_product) + '$' }}</td>
 					</tr>
 					<tr>
+						<td>Total:</td>
 						<td></td>
 						<td></td>
-						<td></td>
-						<td>{{ total }}</td>
+						<td>{{ total + '$' }}</td>
 					</tr>
 				</tbody>	
 			</table>

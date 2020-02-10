@@ -53,14 +53,6 @@
         transition: opacity 0.5s;
     }
 
-    icon-enter-to{
-
-    }
-
-    .icon-leave{
-
-    }
-
     .icon-leave-active{
         opacity: 0;
         transition: opacity 0.5s;

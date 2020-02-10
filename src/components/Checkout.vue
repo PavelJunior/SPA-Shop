@@ -7,7 +7,7 @@
 				Your cart is empty
 			</div>
 			<template v-else>
-				<transition leave-active-class="animated bounceOutDown"  enter-active-class="animated bounceInUp" mode="out-in">
+				<transition leave-active-class="animated fadeOut"  enter-active-class="animated fadeIn" mode="out-in">
 					<form v-if="getSubbmited!='true'">
 						<div class="progress">
 							<div class="progress-bar" :style="barProgress"></div>
@@ -27,10 +27,16 @@
 					</form>
 					<div v-else>
 						<table class="table table-bordered">
-							<tr v-for="(object, index) in getInfo">
-								<td>{{ object.name }}</td>
-								<td>{{ object.value }}</td>
-							</tr>
+							<tbody>
+								<tr v-for="(object, index) in getInfo">
+									<td>{{ object.name }}</td>
+									<td>{{ object.value }}</td>
+								</tr>
+								<tr>
+									<td>Products</td>
+									<td>{{ getProductInfo }}</td>
+								</tr>
+							</tbody>
 						</table>
 					</div>
 				</transition>
@@ -79,6 +85,9 @@
 			...mapGetters('checkout', {
 				getInfo: 'info',
 				getSubbmited: 'submitted'
+			}),
+			...mapGetters('cart', {
+				getProductInfo: 'products',
 			}),
 			empty(){
 				return this.$store.getters['cart/empty']

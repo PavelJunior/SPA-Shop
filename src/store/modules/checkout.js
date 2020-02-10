@@ -3,32 +3,32 @@ export default {
     state: {
         info: [
             {
-                name: 'Name',
+                name: 'First name',
                 value: '',
-                pattern: /^[a-zA-Z ]{2,30}$/,
+                pattern: /^[a-zA-Z ]{1,40}$/,
+            },
+            {
+                name: 'Second name',
+                value: '',
+                pattern: /^[a-zA-Z ]{1,40}$/,
             },
             {
                 name: 'Phone',
-                value: 'dddd',
+                value: '',
                 pattern: /^[0-9]{7,14}$/,
 
             },
             {
                 name: 'Email',
                 value: '',
-                pattern: /.+/,
+                pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
 
             },
             {
-                name: 'Some Field 1',
+                name: 'Address',
                 value: '',
                 pattern: /.+/,
 
-            },
-            {
-                name: 'Some Field 2',
-                value: '',
-                pattern: /.+/,
             }
         ],
         submitted: "false"
@@ -63,7 +63,7 @@ export default {
             store.commit("setSubbmitedToProccess");
             setTimeout(() => {
                 store.commit("setSubbmitedToTrue");
-            }, 3000);
+            }, 1000);
         }
     },
     strict: process.env.NODE_ENV !== 'production'

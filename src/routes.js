@@ -20,6 +20,7 @@ const routes = [
         name: 'products',
         path: '/products',
         component: ProductsList,
+        //need when we load images from API
         // beforeEnter(from, to, next){
         //     store.dispatch('products/loadProducts');
         //     next();

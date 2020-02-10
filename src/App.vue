@@ -56,7 +56,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.menu{
 		border-right: 1px solid #ddd;
 	}
@@ -73,28 +73,12 @@
 		color: inherit;
 	}
 
-	.slide-enter{
-		
-	}
-
 	.slide-enter-active{
 		animation: slideIn 0.5s;
 	}
 
-	.slide-enter-to{
-		
-	}
-
-	.slide-leave{
-		
-	}
-
 	.slide-leave-active{
 		animation: slideOut 0.5s;
-	}
-
-	.slide-leave-to{
-		
 	}
 
 	@keyframes slideIn{
